@@ -1,0 +1,13 @@
+# the way of dynamic programming
+
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        a = nums[0]    #确定初始加和值
+        sum = 0    
+        for i in nums:
+            if sum > 0:
+                sum = sum + i    #直到遇到第一个正值时才开始计算序列和
+            else:
+                sum = i    #一旦此前的序列加和为负，则再次从遇到的第一个正值开始计算序列和
+            a = max(a,sum)    #更新此时的最大序列和
+        return a
