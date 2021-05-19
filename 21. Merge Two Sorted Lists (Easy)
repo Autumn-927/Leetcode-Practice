@@ -1,0 +1,19 @@
+#the way of recursion
+
+Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+        if l1 == None:
+            return l2
+        elif l2 == None:
+            return l1    #确定何时退出递归：二者回归空链表
+        elif l1.val <= l2.val:
+            l1.next = self.mergeTwoLists(l1.next,l2)    #如果l1头部节点较小，则固定在首位，后面链表按照同样函数进行递归
+            return l1
+        else:
+            l2.next = self.mergeTwoLists(l2.next,l1)
+            return l2
