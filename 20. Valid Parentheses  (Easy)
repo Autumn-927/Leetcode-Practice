@@ -1,0 +1,20 @@
+#the way of stack
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        if len(s)==0:
+            return True
+        elif len(s)%2==1:
+            return False
+        else:
+            hashtable = {')':'(',']':'[','}':'{'}    #创建一个关于右括号的哈希表
+            stack = list()    #创建一个用于存放左括号的栈
+            for i in s:
+                if i in hashtable:    #如果i是右括号
+                    if len(stack)==0 or stack[-1]!=hashtable[i]:    #如果没有左括号时就出现了右括号，或者栈里的最新一个元素无法和i配对
+                        return False
+                    else:
+                        stack.pop()    #可以配对，删除栈的最新一位
+                else:
+                    stack.append(i)    #如果i是左括号，加入栈
+            return len(stack)==0
