@@ -1,0 +1,22 @@
+# the way of simple iteration (excess time)
+
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        if n <= 1:
+            return 1
+        elif n == 2:
+            return 2
+        else:
+            return self.climbStairs(n-1) + self.climbStairs(n-2)
+
+# the way of optimal recursion
+
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        if n <= 1:
+            return 1
+        else:
+            s1 = s2 = 1
+            for i in range(2,n+1):
+                s1,s2 = s2,s1+s2    #递归依次计算f(n-1)和f(n-2)的值
+            return s2
