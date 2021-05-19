@@ -1,4 +1,4 @@
-#the way of simply enumeration
+#1. the way of simply enumeration
 
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
@@ -10,13 +10,13 @@ class Solution:
         
         return []
 
-#the way of hashtable
+#2. the way of hashtable
 
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         hashtable = dict()
-        for i,n in enumerate(nums):
-            if target - n in hashtable:
+        for i,n in enumerate(nums):    #n为数值，i为对应位置
+            if target - n in hashtable:    #首先查询对于n，哈希表中是否有对应元素
                 return hashtable[target-n],i
-            hashtable[n] = i
+            hashtable[n] = i    #如果n无对应元素，则将n加入哈希表，从而避免与自身配对
         return
