@@ -1,0 +1,22 @@
+#way of iteration (excess of time)
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        profit = 0
+        for i in range(len(prices)):
+            for j in range(i+1,len(prices)):
+                dif = prices[j] - prices[i]
+                profit = max(profit,dif)
+        return profit
+        
+#way of dynamic
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        s = prices[0]
+        profit = 0
+        for i in prices:
+            if i-s < 0:
+                s = i
+            profit = max(profit, i - s)
+        return profit
