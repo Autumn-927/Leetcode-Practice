@@ -1,0 +1,12 @@
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        if amount == 0:
+            return 0
+        df = [float('inf')] * (amount+1)
+        df[0] = 0
+        for n in coins:
+            for x in range(n,amount+1):
+                df[x] = min(df[x],df[x - n]+1)
+        if df[-1] != float('inf'):
+            return df[-1]
+        return -1
