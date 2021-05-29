@@ -1,0 +1,45 @@
+# excess time
+
+class Solution:
+    def validPalindrome(self, s: str) -> bool:
+        def checkPalindrome(s):
+            n = 0
+            for i in range(len(s)):
+                if s[i] != s[len(s) - i - 1]:
+                    n += 1
+            if n == 0:
+                return True
+            else:
+                return False
+
+        if checkPalindrome(s) == True:
+            return True
+        else:
+            m = 0
+            for j in range(len(s)):
+                news = s[:j]+s[j+1:]
+                if checkPalindrome(news) == True:
+                    m += 1
+            return m != 0
+
+# way of dynamic
+
+class Solution:
+    def validPalindrome(self, s: str) -> bool:
+        def checkPalindrome(s,left,right):
+            i,j = left,right
+            while i<j:
+                if s[i] != s[j]:
+                    return False
+                i += 1
+                j -= 1
+            return True
+
+        k,l = 0,len(s)-1
+        while k<l:
+            if s[k] == s[l]:
+                k += 1
+                l -= 1
+            else:
+                return checkPalindrome(s,k+1,l) or checkPalindrome(s,k,l-1)
+        return True
