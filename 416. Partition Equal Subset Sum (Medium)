@@ -1,0 +1,13 @@
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        if sum(nums)%2 == 1:
+            return False
+        target = sum(nums)//2
+        df = [0]*(target+1)
+        df[0] = 1
+        for n in nums:
+            for x in range(target, n-1, -1):
+                df[x] += df[x - n]
+        if df[-1] == 0:
+            return False
+        return True
