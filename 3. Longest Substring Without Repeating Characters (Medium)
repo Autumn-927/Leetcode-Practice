@@ -1,0 +1,18 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        if s == '':
+            return 0
+        elif s == ' ':
+            return 1
+        else:
+            a= -1
+            sum = 0
+            sub = {}
+            for i,c in enumerate(s):
+                if (c in sub) and (sub[c] > a):
+                    a = sub[c]
+                    sub[c] = i
+                else:
+                    sub[c] = i
+                    sum = max(sum,i-a)                   
+        return sum
